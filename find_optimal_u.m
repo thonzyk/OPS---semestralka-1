@@ -14,29 +14,25 @@ function [u_optimal] = find_optimal_u(D,H, polygon_constraint, u0)
 
 % Inicializace
 is_polygon = ~isempty(polygon_constraint);
+
 if is_polygon
-    polygon_center = (sum(polygon_constraint, 2)'/length(polygon_constraint))';
+    [A, b] = equation_from_polygon_vertices(polygon_constraint);
+    
+else
+    A = [];
+    b = [];
 end
 
 % Kriterialni funkce
 J = @(u)u'*u;
 
 % Nalezeni optima
-u_optimal = fmincon(J,u0,[],[],[],[],[],[],@crit);
+u_optimal = fmincon(J,u0,A,b,[],[],[],[],@compute_g);
 
 
-    function [c,ceq] = crit(u)
+
+    function [c,ceq] = compute_g(u)
         ceq = [];
-        % Omezeni funkci g(u)
-        c(1) = compute_g(u);
-        
-        % Omezeni polygonem
-        if is_polygon
-            c(2) = polygon_fcn(u);
-        end
-    end
-
-    function c = compute_g(u)
         c = 1 - compute_q(u);
     end
 
@@ -46,14 +42,6 @@ u_optimal = fmincon(J,u0,[],[],[],[],[],[],@crit);
         [~, q] = fminsearch(f_q,alpha0);
         % Minus sign for MAX/MIN duality
         q = -q;
-    end
-
-    function c = polygon_fcn(u)
-        if inpolygon(u(1),u(2),polygon_constraint(1, :),polygon_constraint(2, :))
-            c = -1;
-        else
-            c = distance(u', polygon_center');
-        end
     end
 end
 

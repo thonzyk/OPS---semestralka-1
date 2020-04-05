@@ -24,13 +24,20 @@ end
 % Nalezeni maxim funkce q
 [m, mi] = max(q);
 
+
+
 % Vykresleni
 plot(alphas, q)
-title('Prubeh funkce q')
-xlabel('\alpha')
-ylabel('q(u, \alpha)')
 hold on
+% Zachovani predesle barvy
+ax = gca;
+ax.ColorOrderIndex = ax.ColorOrderIndex - 1;
 plot((1/N)*(mi-1), m, 'o')
 hold off
+
+
+title('\textbf{Pr\r ub\v eh funkce q}', 'interpreter', 'latex')
+xlabel('$\alpha$', 'interpreter', 'latex')
+ylabel('$q(\alpha)$', 'interpreter', 'latex')
 end
 

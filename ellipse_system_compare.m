@@ -22,8 +22,9 @@ end
 hold off
 
 % Popisky
-xlabel('y_1')
-ylabel('y_2')
+xlabel('$\mathbf{y_1}$', 'interpreter', 'latex')
+ylabel('$\mathbf{y_2}$', 'interpreter', 'latex')
+legend('\textbf{elipsa 1}', '\textbf{st\v{r}ed elipsy 1}', '\textbf{elipsa 2}', '\textbf{st\v{r}ed elipsy 2}', 'interpreter', 'latex')
 grid
 end
 

@@ -39,9 +39,10 @@ surf(x_axis, y_axis, g)
 hold off
 
 % Popisky
-title('3D graf funkce g(u)')
-xlabel('u_1')
-ylabel('u_1')
+title('\textbf{3D graf funkce g(u)}', 'interpreter', 'latex')
+xlabel('$\mathbf{u_1}$', 'interpreter', 'latex')
+ylabel('$\mathbf{u_2}$', 'interpreter', 'latex')
+legend('\textbf{Prahov\'' a hladina}', '\textbf{g(u)}', 'interpreter', 'latex')
 axis equal
 
 % Vykresleni vrstevnic
@@ -63,20 +64,20 @@ else
 end
 
 % Vykresleni testovacich u a optimalniho u
-s1 = scatter(utest(1, 1), utest(2, 1));
-s2 = scatter(utest(1, 2), utest(2, 2));
+s1 = scatter(utest(1, 1), utest(2, 1), 'r');
+s2 = scatter(utest(1, 2), utest(2, 2), 'b');
 global optimal_u;
 s3 = plot(optimal_u(1), optimal_u(2), 'g*');
 hold off
 
 % Popisky
-title('Vrstevnice funkce g(u)')
-legend([c, s1, s2, s3, s4], 'Nevyhovujici u', 'u-test1', 'u-test2', 'Optimalni u', 'Omezujici polygon')
+title('\textbf{Vrstevnice funkce g(u)}', 'interpreter', 'latex')
+legend([c, s1, s2, s3, s4], '\textbf{Nevyhovuj\'' ic\'' i u}', '$\mathbf{u_{test1}}$', '$\mathbf{u_{test2}}$', '\textbf{Optimalni u}', '\textbf{Omezuj\'' ic\'' i polygon}', 'interpreter', 'latex')
 w = warning('query','last');
 id = w.identifier;
 warning('off',id)
-xlabel('u_1')
-ylabel('u_1')
+xlabel('$\mathbf{u_1}$', 'interpreter', 'latex')
+ylabel('$\mathbf{u_2}$', 'interpreter', 'latex')
 axis equal
 grid
 end

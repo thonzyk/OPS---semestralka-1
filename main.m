@@ -1,8 +1,9 @@
-%% 1. SEMESTRÁLNÍ PRÁCE KKY/OPS - STATICKA OPTIMALIZACE
-%% Autor: Tomáš Honzík
+%% 1. SEMESTRALNI PRACE KKY/OPS - STATICKA OPTIMALIZACE
+%% Autor: Tomas Honzik & Tomas Kolar
 
 %% SETUP
 % slCharacterEncoding('UTF-8')
+% feature('DefaultCharacterSet', 'UTF8')
 close all; clear; clc;
 
 %% 1) POPIS MOZNYCH REALIZACI SYSTEMU POMOCI MATIC
@@ -12,10 +13,10 @@ close all; clear; clc;
 
 % Graficke srovnani systemu
 ellipse_system_compare(D,H,utest(:, 1))
-title('Porovnani systemu pro u-test1')
+title('\textbf{Porovn\''{a}n\''{i} systn\''{e}mu pro} $\mathbf{u_{test1}}$', 'interpreter', 'latex')
 
-ellipse_system_compare(D,H,[6 8]')
-title('Porovnani systemu pro u-test2')
+ellipse_system_compare(D,H,utest(:, 2))
+title('\textbf{Porovn\''{a}n\''{i} systn\''{e}mu pro} $\mathbf{u_{test2}}$', 'interpreter', 'latex')
 
 
 %% 2) FUNKCE q
@@ -26,28 +27,23 @@ hold on
 plot_q(D,H,utest(:, 2))
 hold on
 plot(0:1, ones(1, 2), '--')
-legend('q(u_1)','max_1', 'q(u_2)','max_1', 'limit')
+legend('$\mathbf{q(u_1)}$','$\mathbf{max_1}$', '$\mathbf{q(u_2)}$','$\mathbf{max_1}$', '\textbf{Limit}', 'interpreter', 'latex')
 grid
 
 %% 3) NALEZENI OPTIMA
 
-u0 = [-20 -20]';
+u0 = [10 10]';
 global optimal_u;
 
 % Bez omezeni polygonem
 optimal_u = find_optimal_u(D,H,[],u0);
 plot_g_3D(D,H,30,utest, []);
 ellipse_system_compare(D,H,optimal_u)
-title('Porovnání systému pro u-optimalni')
+title('\textbf{Porovn\'' an\'' i syst\'' emu pro u-optim\'' aln\'' i}', 'interpreter', 'latex')
 
 % S omezenim polygonem
 optimal_u = find_optimal_u(D,H,b,u0);
 plot_g_3D(D,H,30,utest, b);
 ellipse_system_compare(D,H,optimal_u)
-title('Porovnání systému pro u-optimalni s omezenim polygonem')
-
-
-
-
-
+title('\textbf{Porovn\'' an\'' i syst\'' emu pro u-optim\'' aln\'' i s omezen\'' im polygonem}', 'interpreter', 'latex')
 
