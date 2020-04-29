@@ -1,6 +1,6 @@
 function drdt = scenario_1(t,r)
 
-global m mu t0 r0 dotr0 tf rL hL vL orbitalPeriod
+global m mu
 
 u = [0 0]';
 
